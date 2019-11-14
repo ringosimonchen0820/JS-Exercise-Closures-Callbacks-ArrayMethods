@@ -254,15 +254,14 @@ function tallyUpDonations(runners) {
  * const counter = counterMaker()
  * counter() // should return 0
  * counter() // should return 1
- * counter() // should return 2k,
+ * counter() // should return 2,
  * etc
 */
 function counterMaker() {
   // BROKEN CODE STARTS
   var count = 0;
-  return function counter() {
-    return count;
-    count ++ 
+  return function () {
+    return count ++;
   }
   // BROKEN CODE ENDS
 }
@@ -287,8 +286,14 @@ function counterMaker() {
  * counter() // should return 0
  * etc
 */
-function counterMakerWithLimit(/* CODE HERE */) {
-  /* CODE HERE */
+function counterMakerWithLimit(limits) {
+  var count = 0;
+  return function() {
+    if(count > limits) {
+      count = 0;
+    } 
+    return count++;
+  }
 }
 
 /////////////// END OF CHALLENGE ///////////////
